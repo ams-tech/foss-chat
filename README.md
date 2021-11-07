@@ -46,6 +46,10 @@ provider.
 * Open `.../site/src/config.js` and set the `config.domains.api` variable to your cloud api devopment URL from above
 * Start the application using `npm start` (TODO: replace this with whatever's appropriate for Vue.js)
 
+### Destroy your Development Instance
+
+Destroy the development instance by executing `serverless remove`.
+
 ### Create a Production Deployment
 
 **TBD**
