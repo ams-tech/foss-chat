@@ -1,112 +1,51 @@
-[![Serverless Fullstack Application Express React DynamoDB AWS Lambda AWS HTTP API](https://s3.amazonaws.com/assets.github.serverless/components/readme-serverless-framework-fullstack-application.png
-)](https://www.serverless-fullstack-app.com)
+# foss-chat
 
-A complete, serverless, full-stack application built on AWS Lambda, AWS HTTP API, Express.js, React and DynamoDB.
+## Quickstart Guide
 
-#### Live Demo: [https://www.serverless-fullstack-app.com](https://www.serverless-fullstack-app.com)
+The `foss-chat` platform utilizes the [serverless](https://github.com/serverless/serverless) framework to manage 
+application deployment.  Developers and Users are encouraged to create an account on the 
+[Serverless Dashboard](https://app.serverless.com/) to manage their AWS credentials, development environments,
+and CD/CI workflows for automated production deployments.
 
-## Quick Start
+There are alternate methods to [manage providers](https://www.serverless.com/framework/docs/providers), however this 
+guide will cover using the Serverless Dashboard with AWS. 
 
-Install the latest version of the Serverless Framework:
+### Create a Development Instance
 
+#### Create a Serverless Provider
 
-```
-npm i -g serverless
-```
+A serverless provider is a set of credentials for a cloud service.  Best practices indicate one should create a separate 
+provider for each application, including your development environment.
 
-Then, initialize the `fullstack-app` template:
+* From the [Serverless Dashboard](https://app.serverless.com/) dashboard, navigate to `org`, then select the `providers` tab, then click `add` to add a new 
+provider.
+![Add Serverless Provider](docs/images/serverless-add-provider.png)
+* Select "Simple", name the provider `foss-chat-dev` (or similar), then click `Connect AWS Provider`
+![Connect AWS](docs/images/serverless-connect-provider.png)
+* Log in with your AWS credentials, check the `Acknowledge` box, then `Create Stack`
+![Create AWS Stack](docs/images/aws-create-stack.png)
+* Return to the Serverless Dashboard tab.  You should now have the `foss-chat-dev` provider
+![foss-chat-dev Provider](docs/images/foss-chat-dev.png)
 
-```
-serverless init fullstack-app
-cd fullstack-app
-```
+#### Install Serverless Framework
 
-Then, add your AWS credentials in the `.env` file in the root directory, like this:
+* Install [Node](https://nodejs.org/en/download/package-manager/) on your system
+* Install the serverless framework by executing `npm install -g serverless` from the command line
+* Log in to the Serverless Dashboard by executing ``
 
-```text
-AWS_ACCESS_KEY_ID=JAFJ89109JASFKLJASF
-AWS_SECRET_ACCESS_KEY=AJ91J9A0SFA0S9FSKAFLASJFLJ
+#### Deploy the Cloud Platform
 
-# This signs you JWT tokens used for auth.  Enter a random string in here that's ~40 characters in length.
-tokenSecret=yourSecretKey
+* Execute `serverless deploy`
+* Navigate to the Serverless Dashboard.  Notice the `dev` stage of the platform services are running.
+![Services](docs/images/services.png)
+* Click on `api->dev`, notice the API URL has been generated here.
+![API URL](docs/images/api-url.png)
 
-# Only add this if you want a custom domain.  Purchase it on AWS Route53 in your target AWS account first.
-domain=serverless-fullstack-app.com
-```
+#### Start a Local Instance of the Frontend
 
-In the root folder of the project, run `serverless deploy`
+* Open `.../site/src/config.js` and set the `config.domains.api` variable to your cloud api devopment URL from above
+* Start the application using `npm start` (TODO: replace this with whatever's appropriate for Vue.js)
 
-Lastly, you will need to add your API domain manually to your React application in `./site/src/config.js`, so that you interact with your serverless Express.js back-end.  You can find the your API url by going into `./api` and running `serverless info` and copying the `url:` value.  It should look something like this `https://9jfalnal19.execute-api.us-east-1.amazonaws.com` or it will look like the custom domain you have set.
+### Create a Production Deployment
 
-**Note:**  Upon the first deployment of your website, it will take a 2-3 minutes for the Cloudfront (CDN) URL to work.  Until then, you can access it via the `bucketUrl`.
-
-After initial deployment, we recommend deploying only the parts you are changing, not the entire thing together (why risk deploying your database with a code change?).  To do this, `cd` into a part of the application and run `serverless deploy`.
-
-When working on the `./api` we highly recommend using `serverless dev`.  This command watches your code, auto-deploys it, and streams `console.log()` statements and errors directly to your CLI in real-time!
-
-If you want to add custom domains to your landing pages and API, either hardcode them in your `serverless.yml` or reference them as environment variables in `serverless.yml`, like this:
-
-```yaml
-inputs:
-  domain: ${env:domain}
-```
-
-```text
-domain=serverless-fullstack-app.com
-```
-
-Support for stages is built in.
-
-You can deploy everything or individual components to different stages via the `--stage` flag, like this:
-
-`serverless deploy --stage prod`
-
-Or, you can hardcode the stage in `serverless.yml` (not recommended):
-
-```yaml
-app: fullstack
-component: express@0.0.20
-name: fullstack-api
-stage: prod # Put the stage in here
-```
-
-Lastly, you can add separate environment variables for each stage using `.env` files with the stage name in them:
-
-```bash
-.env # Any stage
-.env.dev # "dev" stage only
-.env.prod # "prod" stage only
-```
-
-Then simply reference those environment variables using Serverless Variables in your YAML:
-
-```yaml
-app: fullstack
-component: express@0.0.20
-name: fullstack-api
-
-inputs:
-  domain: api.${env:domain}
-```
-
-And deploy!
-
-`serverless deploy --stage prod`
-
-Enjoy!  This is a work in progress and we will continue to add funcitonality to this.
-
-## Other Resources
-
-For more details on each part of this fullstack application, check out these resources:
-
-* [Serverless Components](https://github.com/serverless/components)
-* [Serverless Express](https://github.com/serverless-components/express)
-* [Serverless Website](https://github.com/serverless-components/website)
-* [Serverless AWS DynamoDB](https://github.com/serverless-components/aws-dynamodb)
-* [Serverless AWS IAM Role](https://github.com/serverless-components/aws-iam-role)
-
-## Guides
-
-### How To Debug CORS Errors
-
-If you are running into CORS errors, see our guide on debugging them [within the Express Component's repo](https://github.com/serverless-components/express/blob/master/README.md#how-to-debug-cors-errors)
+**TBD**
