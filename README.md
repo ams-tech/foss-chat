@@ -31,7 +31,7 @@ provider.
 
 * Install [Node](https://nodejs.org/en/download/package-manager/) on your system
 * Install the serverless framework by executing `npm install -g serverless` from the command line
-* Log in to the Serverless Dashboard by executing ``
+* Log in to the Serverless Dashboard by executing `serverless login`
 
 #### Deploy the Cloud Platform
 
