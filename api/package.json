@@ -1,5 +1,5 @@
 {
-  "name": "serverless-fullstack-app-api",
+  "name": "foss-chat-api",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,7 +9,7 @@
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "shortid": "^2.2.15"
+    "nanoid": "^3.1.30"
   },
   "devDependencies": {},
   "scripts": {

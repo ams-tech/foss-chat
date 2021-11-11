@@ -3,7 +3,7 @@
  */
 
 const AWS = require('aws-sdk')
-const shortid = require('shortid')
+const nanoid = require('nanoid')
 const utils = require('../utils')
 
 const dynamodb = new AWS.DynamoDB.DocumentClient({
@@ -42,7 +42,7 @@ const register = async(user = {}) => {
     Item: {
       hk: user.email,
       sk: 'user',
-      sk2: shortid.generate(),
+      sk2: nanoid(),
       createdAt: Date.now(),
       updatedAt: Date.now(),
       password: user.password,
