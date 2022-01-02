@@ -27,7 +27,21 @@ provider.
 * Return to the Serverless Dashboard tab.  You should now have the `foss-chat-dev` provider
 ![foss-chat-dev Provider](docs/images/foss-chat-dev.png)
 
-#### Create 
+#### Generate Secrets
+
+##### JSON Web Token Secret for `jwt-passport`
+
+The JWT Secret is passed into the API component as the `passportTokenSecret` [Serverless Parameter](https://www.serverless.com/framework/docs/guides/parameters), 
+where it is accessed as the `tokenSecret` [environment variable](api/serverless.yml#L18).
+
+To set the `passportTokenSecret` parameter:
+
+* Generate a random string by executing `openssl rand -hex 256`
+![Generate tokenSecret](docs/images/openssl-rand.png)
+* Navigate to the [Serverless Dashboard](https://app.serverless.com/), select the `api` settings, then click `parameters`.
+* Create a parameter with the key `passportTokenSecret`, and the value of the string generated in the previous step
+![Serverless Parameters](docs/images/serverless-params.png)
+* Click "Add" to save the parameter.
 
 #### Install Serverless Framework
 
